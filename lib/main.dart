@@ -33,6 +33,12 @@ class _MyHomePageState extends State<MyHomePage> {
       body: Stack(
         children: <Widget>[
           BackgroundWithRings(),
+          Positioned(
+            top: 0.0,
+            left: 0.0,
+            right: 0.0,
+            child: AppBar(),
+          ),
         ],
       ),
     );
