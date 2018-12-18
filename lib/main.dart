@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:weather/forcast/app_bar.dart';
 import 'package:weather/forcast/background/background_with_rings.dart';
+import 'package:weather/forcast/week_drawer.dart';
 
 void main() => runApp(MyApp());
 
@@ -41,6 +42,7 @@ class _MyHomePageState extends State<MyHomePage> {
             right: 0.0,
             child: ForecastAppBar(),
           ),
+          WeekDrawer(),
         ],
       ),
     );
