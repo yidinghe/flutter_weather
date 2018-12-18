@@ -11,11 +11,19 @@ class WeekDrawer extends StatelessWidget {
     'Monday\nAugust 2',
   ];
 
+  final Function(String title) onDaySelected;
+
+  WeekDrawer({
+    this.onDaySelected,
+  });
+
   List<Widget> _buildDayButtons() {
     return week.map((String title) {
       return Expanded(
         child: GestureDetector(
-          onTap: () {},
+          onTap: () {
+            onDaySelected(title);
+          },
           child: Text(
             title,
             textAlign: TextAlign.center,

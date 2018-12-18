@@ -1,6 +1,10 @@
 import 'package:flutter/material.dart';
 
 class ForecastAppBar extends StatelessWidget {
+  final Function onDrawerArrowTap;
+
+  ForecastAppBar({this.onDrawerArrowTap});
+
   @override
   Widget build(BuildContext context) {
     return AppBar(
@@ -27,9 +31,7 @@ class ForecastAppBar extends StatelessWidget {
             color: Colors.white,
             size: 35.0,
           ),
-          onPressed: () {
-            // TODO
-          },
+          onPressed: onDrawerArrowTap,
         )
       ],
     );
