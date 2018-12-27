@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:weather/forecast/app_bar.dart';
+import 'package:weather/forecast/forcast_list.dart';
 import 'package:weather/forecast/forecast.dart';
 import 'package:weather/forecast/week_drawer.dart';
 import 'package:weather/generic_widgets/sliding_drawer.dart';
@@ -40,7 +41,7 @@ class _MyHomePageState extends State<MyHomePage>
     return Scaffold(
       body: Stack(
         children: <Widget>[
-          Forecast(),
+          Forecast(radialList: forecastRadialList),
           Positioned(
             top: 0.0,
             left: 0.0,

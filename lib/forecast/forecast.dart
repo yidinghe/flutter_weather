@@ -1,7 +1,13 @@
 import 'package:flutter/material.dart';
 import 'package:weather/forecast/background/background_with_rings.dart';
+import 'package:weather/forecast/radial_list.dart';
 
 class Forecast extends StatelessWidget {
+  RadialListViewModel radialList;
+
+  Forecast({
+    @required this.radialList,
+  });
 
   Widget _temperatureText() {
     return new Align(
@@ -25,6 +31,9 @@ class Forecast extends StatelessWidget {
       children: <Widget>[
         BackgroundWithRings(),
         _temperatureText(),
+        RadialList(
+          radialList: radialList,
+        )
       ],
     );
   }
