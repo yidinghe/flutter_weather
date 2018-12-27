@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:weather/forecast/app_bar.dart';
 import 'package:weather/forecast/forcast_list.dart';
 import 'package:weather/forecast/forecast.dart';
+import 'package:weather/forecast/radial_list.dart';
 import 'package:weather/forecast/week_drawer.dart';
 import 'package:weather/generic_widgets/sliding_drawer.dart';
 
@@ -31,9 +32,9 @@ class MyHomePage extends StatefulWidget {
   _MyHomePageState createState() => _MyHomePageState();
 }
 
-class _MyHomePageState extends State<MyHomePage>
-    with SingleTickerProviderStateMixin {
+class _MyHomePageState extends State<MyHomePage> with TickerProviderStateMixin {
   OpenableController openableController;
+  SlidingRadialListController slidingRadialListController;
   String selectedDay = 'Monday, August 26';
 
   @override
@@ -41,7 +42,10 @@ class _MyHomePageState extends State<MyHomePage>
     return Scaffold(
       body: Stack(
         children: <Widget>[
-          Forecast(radialList: forecastRadialList),
+          Forecast(
+            radialList: forecastRadialList,
+            slidingRadialListController: slidingRadialListController,
+          ),
           Positioned(
             top: 0.0,
             left: 0.0,
@@ -59,6 +63,10 @@ class _MyHomePageState extends State<MyHomePage>
                   selectedDay = title.replaceAll('\n', ', ');
                 });
 
+                slidingRadialListController
+                    .close()
+                    .then((_) => slidingRadialListController.open());
+
                 openableController.close();
               },
             ),
@@ -71,9 +79,14 @@ class _MyHomePageState extends State<MyHomePage>
   @override
   void initState() {
     super.initState();
-    openableController = new OpenableController(
+    openableController = OpenableController(
       vsync: this,
-      openDuration: const Duration(milliseconds: 250),
+      openDuration: Duration(milliseconds: 250),
     )..addListener(() => setState(() {}));
+
+    slidingRadialListController = SlidingRadialListController(
+      itemCount: forecastRadialList.items.length,
+      vsync: this,
+    )..open();
   }
 }
